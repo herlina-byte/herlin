@@ -1,0 +1,409 @@
+/* ==========================================================
+   Kala Senja - tema senja retro
+   Simpan sebagai: css/style.css
+   ========================================================== */
+
+:root {
+  --malam: #251a38;      /* ungu paling gelap, teks & footer */
+  --senja: #5b3d78;      /* ungu tengah langit */
+  --rose: #b95f82;       /* semburat rose di cakrawala */
+  --jingga: #f2a65a;     /* matahari, aksen utama */
+  --madu: #ffd08a;       /* bagian atas matahari */
+  --kabut: #f8f2f5;      /* latar halaman */
+  --garis: #e3d6e6;
+  --teks-lembut: #5c4e6b;
+
+  --judul: "Fraunces", Georgia, serif;
+  --isi: "Poppins", system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--isi);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--malam);
+  background: var(--kabut);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- HEADER: langit senja dengan matahari bergaris ---------- */
+header {
+  position: relative;
+  overflow: hidden;
+  padding: 5.5rem 1.5rem 11rem;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 0 50% 50% / 0 0 3.5rem 3.5rem;
+  background: linear-gradient(180deg, #1c1230 0%, var(--senja) 48%, var(--rose) 100%);
+}
+
+/* bintang-bintang kecil di langit atas */
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 45% 0;
+  background:
+    radial-gradient(1.5px 1.5px at 12% 22%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 28% 60%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 46% 15%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 63% 48%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 79% 25%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 90% 62%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 6% 70%, #fff 50%, transparent 51%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* matahari retro: terbelah garis-garis di bagian bawah */
+header::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6rem;
+  width: clamp(14rem, 42vw, 20rem);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--madu) 0%, var(--jingga) 50%, #e2788a 100%);
+  -webkit-mask-image: linear-gradient(180deg,
+    #000 0 52%, transparent 52% 56%, #000 56% 64%, transparent 64% 69%,
+    #000 69% 76%, transparent 76% 82%, #000 82% 88%, transparent 88% 94%, #000 94%);
+          mask-image: linear-gradient(180deg,
+    #000 0 52%, transparent 52% 56%, #000 56% 64%, transparent 64% 69%,
+    #000 69% 76%, transparent 76% 82%, #000 82% 88%, transparent 88% 94%, #000 94%);
+  animation: matahari-naik 2.6s ease-out both;
+  pointer-events: none;
+}
+
+@keyframes matahari-naik {
+  from { transform: translate(-50%, 7rem); opacity: 0; }
+  to   { transform: translate(-50%, 0);    opacity: 1; }
+}
+
+header > * {
+  position: relative;
+  z-index: 1;
+}
+
+header h1 {
+  margin: 0;
+  font-family: var(--judul);
+  font-size: clamp(3rem, 12vw, 5.5rem);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-shadow: 0 4px 30px rgba(28, 18, 48, 0.45);
+}
+
+header p {
+  max-width: none;
+  margin: 1rem 0 2.2rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+nav a {
+  padding: 0.5rem 1.3rem;
+  font-size: 0.92rem;
+  color: #fff;
+  text-decoration: none;
+  background: rgba(37, 26, 56, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+nav a:hover {
+  color: var(--malam);
+  background: var(--jingga);
+  border-color: var(--jingga);
+}
+
+/* ---------- KONTEN UTAMA ---------- */
+main {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 3rem;
+}
+
+section {
+  padding: 3.2rem 0;
+  border-bottom: 1px solid var(--garis);
+}
+
+section:last-child {
+  border-bottom: 0;
+}
+
+h2 {
+  margin: 0 0 1.2rem;
+  font-family: var(--judul);
+  font-size: clamp(1.9rem, 5vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* garis kecil jingga di bawah judul bagian */
+h2::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 4px;
+  margin-top: 0.6rem;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--jingga), var(--rose));
+}
+
+h3 {
+  margin: 2.2rem 0 0.6rem;
+  font-family: var(--judul);
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--senja);
+}
+
+p {
+  margin: 0 0 1rem;
+  max-width: 62ch;
+  color: var(--teks-lembut);
+}
+
+strong {
+  color: var(--malam);
+}
+
+main img {
+  width: 100%;
+  margin: 1.8rem 0;
+  border-radius: 9rem 9rem 1.2rem 1.2rem; /* bentuk lengkung seperti jendela */
+  box-shadow: 0 18px 34px -16px rgba(37, 26, 56, 0.45);
+}
+
+/* ---------- DAFTAR ---------- */
+ul,
+ol {
+  margin: 0;
+  padding-left: 1.3rem;
+  color: var(--teks-lembut);
+}
+
+li {
+  margin-bottom: 0.45rem;
+  padding-left: 0.3rem;
+}
+
+li::marker {
+  color: var(--rose);
+  font-weight: 600;
+}
+
+/* ---------- TABEL HARGA ---------- */
+table {
+  width: 100%;
+  margin: 1.4rem 0;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 1.2rem;
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--garis), 0 14px 30px -20px rgba(37, 26, 56, 0.4);
+}
+
+th,
+td {
+  padding: 1rem 1.2rem;
+  text-align: left;
+}
+
+th {
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(90deg, var(--senja), var(--rose));
+}
+
+td {
+  border-top: 1px solid var(--garis);
+}
+
+th:last-child,
+td:last-child {
+  text-align: right;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+tbody tr:hover td {
+  background: #fdf3e9;
+}
+
+/* ---------- KONTAK ---------- */
+.tombol-wa {
+  display: inline-block;
+  margin-top: 0.3rem;
+  padding: 0.8rem 1.9rem;
+  font-weight: 600;
+  color: var(--malam);
+  text-decoration: none;
+  background: linear-gradient(180deg, var(--madu), var(--jingga));
+  border-radius: 999px;
+  box-shadow: 0 10px 22px -10px rgba(242, 166, 90, 0.9);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tombol-wa:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px -10px rgba(242, 166, 90, 1);
+}
+
+form {
+  margin-top: 2.2rem;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 0 1px var(--garis), 0 18px 36px -24px rgba(37, 26, 56, 0.45);
+}
+
+.field {
+  margin-bottom: 1.2rem;
+}
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+input,
+textarea {
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.75rem 1rem;
+  font: inherit;
+  color: var(--malam);
+  background: var(--kabut);
+  border: 1px solid var(--garis);
+  border-radius: 0.8rem;
+}
+
+input::placeholder {
+  color: #a698b3;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  padding: 0.8rem 2.2rem;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  background: var(--senja);
+  border: 0;
+  border-radius: 999px;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: var(--malam);
+}
+
+iframe {
+  display: block;
+  width: 100%;
+  margin-top: 1.5rem;
+  border: 0;
+  border-radius: 1.4rem;
+}
+
+/* ---------- FOKUS KEYBOARD ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--jingga);
+  outline-offset: 2px;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  padding: 2.4rem 1.5rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  background: var(--malam);
+}
+
+footer p {
+  max-width: none;
+  margin: 0;
+  font-size: 0.9rem;
+  color: inherit;
+}
+
+/* ---------- LAYAR KECIL ---------- */
+@media (max-width: 560px) {
+  header {
+    padding: 4rem 1rem 9.5rem;
+  }
+
+  main {
+    padding: 0.5rem 1.1rem 2rem;
+  }
+
+  section {
+    padding: 2.4rem 0;
+  }
+
+  th,
+  td {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  form {
+    padding: 1.3rem;
+  }
+}
+
+/* ---------- KURANGI GERAKAN ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  header::after {
+    animation: none;
+  }
+
+  .tombol-wa:hover {
+    transform: none;
+  }
+}
